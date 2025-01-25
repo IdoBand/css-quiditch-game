@@ -1,0 +1,65 @@
+@use '../../globals.scss' as globals;
+
+$goals-gap: 0.8em;
+$goal-color: gold;
+
+.goals-container {
+    position: absolute;
+    bottom: -5em;
+
+    &.hoops-pos-a {
+        transform: rotateY(90deg) translateZ(-10em);
+
+    }
+    &.hoops-pos-b {
+        transform: rotateY(-90deg) translateZ(-10em);
+    }
+}
+
+@mixin goal-props {
+    position: absolute;
+    background: $goal-color;
+    box-shadow: 0 0 0.5px #000a inset;
+    bottom: 0;
+    // @include globals.rotate-scene-animation(35s)
+}
+
+.tall-goal {
+    @include goal-props;
+    height: 3em;
+    width: 2px;
+    // transform: rotateX(1deg) rotateZ(1deg)
+ 
+   
+}
+.hoop {
+    position: absolute;
+    @for $i from 1 to 9 {
+        & :nth-child(#{$i}) {
+            --translateZ: calc(#{$i} * 0.2px);
+            --light: calc(#{$i} / 4);
+            --layerColor: rgb(from #{$goal-color} calc(r * var(--light)) calc(g * var(--light)) calc(b * var(--light)));
+
+            position: absolute;
+            inset: -7px;
+            border: 1px var(--layerColor) solid;
+            border-radius: 50%;
+            transform: rotateY(0deg) translateZ(var(--translateZ)) translateY(-50%);
+        }
+    }
+}
+
+.mid-goal {
+    @include goal-props;
+    height: 2.5em;
+    width: 2px;
+    translate: ($goals-gap)
+    
+}
+
+.short-goal {
+    @include goal-props;
+    height: 2em;
+    width: 2px;
+    translate: (-$goals-gap)
+}

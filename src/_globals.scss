@@ -1,0 +1,51 @@
+$cubeSpeed: 2s;
+$rotateSpeed: 30s;
+$scene-rotate-animation: sceneRotate $rotateSpeed infinite linear;
+
+@mixin rotate-scene-animation($rotate-speed) {
+  animation: sceneRotate $rotate-speed infinite linear;
+}
+
+@keyframes sceneRotate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(50deg);
+  }
+  75% {
+    transform: rotateY(-50deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+  // to { transform: rotateY(360deg); }
+}
+
+$slytherin-color:
+  radial-gradient(#0000, rgba(206, 206, 206, 0.7) 95%),
+  repeating-conic-gradient(
+  from 90deg,
+  green 0deg 90deg,
+  #fff 90deg 180deg);
+
+$ravenclaw-color:
+  radial-gradient(#0000, rgba(206, 206, 206, 0.7) 95%),
+  repeating-conic-gradient(
+  from 90deg,
+  rgb(4, 31, 186) 0deg 90deg,
+  #fff 90deg 180deg);
+
+$gryffindor-color:
+  radial-gradient(#0000, rgba(206, 206, 206, 0.7) 95%),
+  repeating-conic-gradient(
+  from 90deg,
+  rgb(248, 0, 0) 0deg 90deg,
+  #e5f10c 90deg 180deg);
+
+$huflpuff-color:
+  radial-gradient(#0000, rgba(206, 206, 206, 0.7) 95%),
+  repeating-conic-gradient(
+  from 90deg,
+  rgb(65, 65, 65) 0deg 90deg,
+  #c5d21b 90deg 180deg);
