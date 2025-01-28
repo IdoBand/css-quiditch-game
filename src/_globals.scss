@@ -1,5 +1,5 @@
 $cubeSpeed: 2s;
-$rotateSpeed: 30s;
+$rotateSpeed: 20s;
 $scene-rotate-animation: sceneRotate $rotateSpeed infinite linear;
 
 @mixin rotate-scene-animation($rotate-speed) {
@@ -7,19 +7,7 @@ $scene-rotate-animation: sceneRotate $rotateSpeed infinite linear;
 }
 
 @keyframes sceneRotate {
-  0% {
-    transform: rotateY(0deg);
-  }
-  25% {
-    transform: rotateY(50deg);
-  }
-  75% {
-    transform: rotateY(-50deg);
-  }
-  100% {
-    transform: rotateY(0deg);
-  }
-  // to { transform: rotateY(360deg); }
+  to { transform: rotateY(360deg); }
 }
 
 $slytherin-color:

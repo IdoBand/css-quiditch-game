@@ -7,44 +7,48 @@ $goal-color: gold;
     position: absolute;
     bottom: -5em;
 
-    &.hoops-pos-a {
+    &.goals-pos-left {
         transform: rotateY(90deg) translateZ(-10em);
-
     }
-    &.hoops-pos-b {
+    &.goals-pos-right {
         transform: rotateY(-90deg) translateZ(-10em);
     }
 }
-
 @mixin goal-props {
+    position: absolute;
+    width: 2px;
+    bottom: 0;
+}
+@mixin pole-props {
     position: absolute;
     background: $goal-color;
     box-shadow: 0 0 0.5px #000a inset;
-    bottom: 0;
-    // @include globals.rotate-scene-animation(35s)
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes poleRotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(-360deg);
+    }
+    100% {
+        // make the animation pause, momentarily take away rotateY from transform
+        transform: translateX(0);
+    }
 }
 
 .tall-goal {
     @include goal-props;
     height: 3em;
-    width: 2px;
-    // transform: rotateX(1deg) rotateZ(1deg)
- 
-   
-}
-.hoop {
-    position: absolute;
-    @for $i from 1 to 9 {
-        & :nth-child(#{$i}) {
-            --translateZ: calc(#{$i} * 0.2px);
-            --light: calc(#{$i} / 4);
-            --layerColor: rgb(from #{$goal-color} calc(r * var(--light)) calc(g * var(--light)) calc(b * var(--light)));
 
-            position: absolute;
-            inset: -7px;
-            border: 1px var(--layerColor) solid;
-            border-radius: 50%;
-            transform: rotateY(0deg) translateZ(var(--translateZ)) translateY(-50%);
+    .tall-pole {
+        @include pole-props;
+        animation: poleRotate globals.$rotateSpeed linear infinite;
+        &.goals-pos-right {
+            animation-delay: 0.5 * globals.$rotateSpeed;
         }
     }
 }
@@ -52,14 +56,48 @@ $goal-color: gold;
 .mid-goal {
     @include goal-props;
     height: 2.5em;
-    width: 2px;
-    translate: ($goals-gap)
+    translate: ($goals-gap);
     
+    .mid-pole {
+        @include pole-props;
+        animation: poleRotate globals.$rotateSpeed linear infinite;
+        &.goals-pos-right {
+            animation-delay: 0.5 * globals.$rotateSpeed;
+        }
+    }
 }
 
 .short-goal {
     @include goal-props;
     height: 2em;
-    width: 2px;
-    translate: (-$goals-gap)
+    translate: (-$goals-gap);
+    
+    .short-pole {
+        @include pole-props;
+        animation: poleRotate globals.$rotateSpeed linear infinite;
+        &.goals-pos-right {
+            animation-delay: 0.5 * globals.$rotateSpeed;
+        }
+    }
+}
+
+.hoop {
+    position: absolute;
+    @for $i from 1 to 9 {
+        & :nth-child(#{$i}) {
+            --translateZ: calc(#{$i} * 0.2px);
+            --light: calc(#{$i} / 4);
+            --layerColor: rgb(from #{$goal-color} calc(r * var(--light)) calc(g * var(--light)) calc(b * var(--light)));
+            --size: calc(sin(#{$i} * 11.25deg) * 1px);
+            
+            position: absolute;
+            inset: -7px;
+            border: var(--size) var(--layerColor) solid;
+            border-radius: 50%;
+            transform: rotateY(0deg) translateZ(var(--translateZ)) translateY(-50%);
+        }
+    }
+    &.back {
+        transform: rotateY(180deg) translateZ(-1px);
+    }
 }

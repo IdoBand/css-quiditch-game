@@ -19,6 +19,5 @@
 
 .scene {
     position: relative;
-    // @include globals.rotate-scene-animation(15s);
-    // transform: rotateY(-70deg);
+    @include globals.rotate-scene-animation(globals.$rotateSpeed);
 }
