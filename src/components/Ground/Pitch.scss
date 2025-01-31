@@ -2,8 +2,11 @@ $pitch-length: 10em;
 $pitch-width: 22em;
 $mark-line-width: 0.04em;
 
+$goal-marking-width: 7%;
+$goal-marking-height: 55%;
+$goal-marking-box-shadow: 0 0 1em rgba(54, 54, 54, 0.667) inset;
+
 .pitch {
-  
   position: absolute;
   width: $pitch-width;
   height: $pitch-length;
@@ -30,5 +33,34 @@ $mark-line-width: 0.04em;
     width: $mark-line-width;
     height: $pitch-length;
     transform: translateX(-50%);
+  }
+  & div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    // background-color: rgba(128, 0, 128, 0.386);
+    overflow: hidden;
+    &::before {
+      content: '';
+      width: $goal-marking-width;
+      height: $goal-marking-height;
+      position: absolute;
+      background-color: white;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: $goal-marking-box-shadow;
+    }
+    &::after {
+      content: '';
+      width: $goal-marking-width;
+      height: $goal-marking-height;
+      position: absolute;
+      background-color: white;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      box-shadow: $goal-marking-box-shadow;
+    }
   }
 }

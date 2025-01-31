@@ -1,6 +1,5 @@
 $cubeSpeed: 2s;
 $rotateSpeed: 20s;
-$scene-rotate-animation: sceneRotate $rotateSpeed infinite linear;
 
 @mixin rotate-scene-animation($rotate-speed) {
   animation: sceneRotate $rotate-speed infinite linear;

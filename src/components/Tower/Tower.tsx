@@ -24,8 +24,8 @@ const Tower = ({ houseName, position }: TowerProps) => {
           <div className={`right-side-trapezoid-up ${houseName}`}></div>
         </div>
         <div className="roof">
-          {/* <div className={`roof-triangle front ${houseName}`}></div>
-          <div className={`roof-triangle back ${houseName}`}></div> */}
+          <div className={`roof-triangle front ${houseName}`}></div>
+          <div className={`roof-triangle back ${houseName}`}></div>
           <div className={`roof-triangle left ${houseName}`}></div>
           <div className={`roof-triangle right ${houseName}`}></div>
         </div>

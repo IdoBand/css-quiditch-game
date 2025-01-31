@@ -25,6 +25,10 @@ $goal-color: gold;
     box-shadow: 0 0 0.5px #000a inset;
     height: 100%;
     width: 100%;
+    animation: poleRotate globals.$rotateSpeed linear infinite;
+    &.goals-pos-right {
+        animation-delay: 0.5 * globals.$rotateSpeed;
+    }
 }
 
 @keyframes poleRotate {
@@ -35,7 +39,7 @@ $goal-color: gold;
         transform: rotateY(-360deg);
     }
     100% {
-        // make the animation pause, momentarily take away rotateY from transform
+        // make the animation pause by momentarily take away rotateY from transform
         transform: translateX(0);
     }
 }
@@ -46,10 +50,6 @@ $goal-color: gold;
 
     .tall-pole {
         @include pole-props;
-        animation: poleRotate globals.$rotateSpeed linear infinite;
-        &.goals-pos-right {
-            animation-delay: 0.5 * globals.$rotateSpeed;
-        }
     }
 }
 
@@ -60,10 +60,6 @@ $goal-color: gold;
     
     .mid-pole {
         @include pole-props;
-        animation: poleRotate globals.$rotateSpeed linear infinite;
-        &.goals-pos-right {
-            animation-delay: 0.5 * globals.$rotateSpeed;
-        }
     }
 }
 
@@ -74,10 +70,6 @@ $goal-color: gold;
     
     .short-pole {
         @include pole-props;
-        animation: poleRotate globals.$rotateSpeed linear infinite;
-        &.goals-pos-right {
-            animation-delay: 0.5 * globals.$rotateSpeed;
-        }
     }
 }
 
@@ -85,16 +77,14 @@ $goal-color: gold;
     position: absolute;
     @for $i from 1 to 9 {
         & :nth-child(#{$i}) {
-            --translateZ: calc(#{$i} * 0.2px);
-            --light: calc(#{$i} / 4);
-            --layerColor: rgb(from #{$goal-color} calc(r * var(--light)) calc(g * var(--light)) calc(b * var(--light)));
-            --size: calc(sin(#{$i} * 11.25deg) * 1px);
-            
+            $translateZ: calc(#{$i} * 0.004em);
+            $size: calc(sin(#{$i} * 11.25deg) * 0.004em);
+            box-shadow: 0 0 0.3px #000a inset;
             position: absolute;
             inset: -7px;
-            border: var(--size) var(--layerColor) solid;
+            border: $size $goal-color solid;
             border-radius: 50%;
-            transform: rotateY(0deg) translateZ(var(--translateZ)) translateY(-50%);
+            transform: rotateY(0deg) translateZ($translateZ) translateY(-50%);
         }
     }
     &.back {
