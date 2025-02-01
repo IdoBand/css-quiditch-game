@@ -1,12 +1,12 @@
  import './Goals.scss'
 type GoalsProps = {
-  GoalsPosition: 'goals-pos-right' | 'goals-pos-left'
+  goalsPosition: 'goals-pos-right' | 'goals-pos-left'
 }
-const Goals = ({ GoalsPosition }: GoalsProps) => {
+const Goals = ({ goalsPosition }: GoalsProps) => {
   return (
-    <div className={`goals-container ${GoalsPosition}`}>
+    <div className={`goals-container ${goalsPosition}`}>
       <div className="tall-goal">
-        <div className={`tall-pole ${GoalsPosition}`}></div>
+        <div className={`tall-pole ${goalsPosition}`}></div>
         <div className="hoop">
           <div className="hoop-layer"></div>
           <div className="hoop-layer"></div>
@@ -29,7 +29,7 @@ const Goals = ({ GoalsPosition }: GoalsProps) => {
         </div>
       </div>
       <div className="mid-goal">
-        <div className={`mid-pole ${GoalsPosition}`}></div>
+        <div className={`mid-pole ${goalsPosition}`}></div>
         <div className="hoop">
           <div className="hoop-layer"></div>
           <div className="hoop-layer"></div>
@@ -52,7 +52,7 @@ const Goals = ({ GoalsPosition }: GoalsProps) => {
         </div>
       </div>
       <div className="short-goal">
-        <div className={`short-pole ${GoalsPosition}`}></div>
+        <div className={`short-pole ${goalsPosition}`}></div>
         <div className="hoop">
           <div className="hoop-layer"></div>
           <div className="hoop-layer"></div>
