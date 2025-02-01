@@ -1,0 +1,93 @@
+@use '../../globals.scss' as globals;
+
+$goals-gap: 0.8em;
+$goal-color: gold;
+
+.goals-container {
+    position: absolute;
+    bottom: -5em;
+
+    &.goals-pos-left {
+        transform: rotateY(90deg) translateZ(-10em);
+    }
+    &.goals-pos-right {
+        transform: rotateY(-90deg) translateZ(-10em);
+    }
+}
+@mixin goal-props {
+    position: absolute;
+    width: 2px;
+    bottom: 0;
+}
+@mixin pole-props {
+    position: absolute;
+    background: $goal-color;
+    box-shadow: 0 0 0.5px #000a inset;
+    height: 100%;
+    width: 100%;
+    animation: poleRotate globals.$rotateSpeed linear infinite;
+    &.goals-pos-right {
+        animation-delay: 0.5 * globals.$rotateSpeed;
+    }
+}
+
+@keyframes poleRotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(-360deg);
+    }
+    100% {
+        // make the animation pause by momentarily take away rotateY from transform
+        transform: translateX(0);
+    }
+}
+
+.tall-goal {
+    @include goal-props;
+    height: 3em;
+
+    .tall-pole {
+        @include pole-props;
+    }
+}
+
+.mid-goal {
+    @include goal-props;
+    height: 2.5em;
+    translate: ($goals-gap);
+    
+    .mid-pole {
+        @include pole-props;
+    }
+}
+
+.short-goal {
+    @include goal-props;
+    height: 2em;
+    translate: (-$goals-gap);
+    
+    .short-pole {
+        @include pole-props;
+    }
+}
+
+.hoop {
+    position: absolute;
+    @for $i from 1 to 9 {
+        & :nth-child(#{$i}) {
+            $translateZ: calc(#{$i} * 0.004em);
+            $size: calc(sin(#{$i} * 11.25deg) * 0.004em);
+            box-shadow: 0 0 0.3px #000a inset;
+            position: absolute;
+            inset: -7px;
+            border: $size $goal-color solid;
+            border-radius: 50%;
+            transform: rotateY(0deg) translateZ($translateZ) translateY(-50%);
+        }
+    }
+    &.back {
+        transform: rotateY(180deg) translateZ(-1px);
+    }
+}
