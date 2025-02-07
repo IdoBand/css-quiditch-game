@@ -19,7 +19,7 @@
 
 .scene {
     position: relative;
-    // @include globals.rotate-scene-animation(globals.$rotateSpeed);
+    @include globals.rotate-scene-animation(globals.$rotateSpeed);
     // transform: rotateY(100deg);
 }
 
