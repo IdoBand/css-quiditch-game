@@ -15,7 +15,7 @@ $goal-marking-box-shadow: 0 0 1em rgba(54, 54, 54, 0.667) inset;
   background-image: 
     repeating-linear-gradient(#508a3b , #018510 0.33em);
   &::before {
-    content: '';
+    content: 'L';
     position: absolute;
     border-radius: 50%;
     border: solid white $mark-line-width;

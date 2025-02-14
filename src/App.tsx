@@ -1,15 +1,27 @@
 
 import './App.scss'
-import './components/Ground/Ground.scss'
-import './components/Ground/Pitch.scss'
 import Tower from './components/Tower/Tower';
 import Goals from './components/Goals/Goals';
-import Snitch from './components/Snitch';
+import Snitch from './components/Snitch/Snitch';
+import Ground from './components/Ground/Ground';
+import { useGameContext } from './context/GameContext';
+import Modal from './components/Modal/Modal';
+
 function App() {
+
+const { gameState, setGameState } = useGameContext()
+
+function handleStartGameClick() {
+  setGameState(prev => ({
+    ...prev,
+    didFirstGame: true,
+    isGameOn: true
+  }))
+}
 
 return (
   <div className="animation-body">
-    <div className="scene">
+    <div className={`scene ${gameState.isGameOn && 'active'}`}>
       <Snitch />
       <Tower houseName='ravenclaw' position='tower-pos-a' />
       <Tower houseName='huflpuff' position='tower-pos-b' />
@@ -21,13 +33,20 @@ return (
       <Tower houseName='slytherin' position='tower-pos-h' />
       <Goals goalsPosition='goals-pos-right' />
       <Goals goalsPosition='goals-pos-left' />
-      <div className="ground" >
-        <div className='pitch' >
-          <div />
-        </div>
-        <div className="ground-mist"></div>
-      </div>
+      <Ground />
     </div>
+    {!gameState.isModal && !gameState.isGameOn &&
+      <button
+      type='button'
+      className='start-game-button'
+      onClick={handleStartGameClick}
+      >
+        Start Game
+      </button>}
+    {
+      gameState.isModal &&
+        <Modal />
+    }
   </div>
   )
 }

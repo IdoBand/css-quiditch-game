@@ -1,5 +1,28 @@
+////////////////////////////////////////////////////////////////////////
+/// Durations
+
 $cubeSpeed: 2s;
 $rotateSpeed: 20s;
+
+
+////////////////////////////////////////////////////////////////////////
+/// Fonts
+
+@font-face {
+  font-family: 'MagicFont';
+  src: url("./assets/fonts/MagicSchoolTwo.ttf");
+}
+@mixin magicFont {
+  font-family: 'MagicFont';
+}
+
+@font-face {
+  font-family: 'readableFont';
+  src: url("./assets/fonts/Benne/Benne-Regular.ttf");
+}
+@mixin readableFont {
+  font-family: 'readableFont';
+}
 
 @mixin rotate-scene-animation($rotate-speed) {
   animation: sceneRotate $rotate-speed infinite linear;
@@ -8,6 +31,15 @@ $rotateSpeed: 20s;
 @keyframes sceneRotate {
   to { transform: rotateY(360deg); }
 }
+
+@keyframes sceneRotate {
+0% { transform: rotateY(0deg); }
+100% { transform: rotateY(360deg); }
+}
+
+
+////////////////////////////////////////////////////////////////////////
+/// COLORS
 
 $slytherin-color:
   radial-gradient(#0000, rgba(206, 206, 206, 0.7) 95%),
@@ -36,3 +68,25 @@ $huflpuff-color:
   from 90deg,
   rgb(65, 65, 65) 0deg 90deg,
   #c5d21b 90deg 180deg);
+
+
+////////////////////////////////////////////////////////////////////////
+/// Buttons
+
+@mixin button {
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 7px 7px 10px black;
+  border: none;
+  padding: 5px 20px;
+  @include readableFont;
+  border-radius: 30px;
+  transition: all 0.2s;
+  transform: translateX(-50%);
+  &:hover {
+    transform: translateX(-50%) scale(1.05);
+  }
+  &:active {
+    transform: translateX(-50%) scale(0.95);
+  }
+}
