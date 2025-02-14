@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { useGameContext } from '../../context/GameContext'
+import './Snitch.scss'
 
 type SnitchCSSStyle = {
   style : {
@@ -45,31 +47,48 @@ function generateOpacity() {
 }
 
 const Snitch = () => {
-
+  
+  const { gameState, setGameState } = useGameContext()
   const [snitchCSSStyle, setSnitchCSSStyle] = useState<SnitchCSSStyle>(initialSnitchStyle)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const point = generateRandomPoint(snitchLimits) 
-      setSnitchCSSStyle(prev => ({
-        lastRotated: prev.lastRotated - 24,
-        style: {
-          ...prev.style,
-          transform: `translateX(${point.x}em) translateY(${point.y}em) translateZ(${point.z}em) rotateY(${prev.lastRotated - 24}deg)`,
-          opacity: `${generateOpacity()}`
-        }
-        
+
+    if (gameState.isGameOn) {
+      const interval = setInterval(() => {
+        const point = generateRandomPoint(snitchLimits) 
+        setSnitchCSSStyle(prev => ({
+          lastRotated: prev.lastRotated - 24,
+          style: {
+            ...prev.style,
+            transform: `translateX(${point.x}em) translateY(${point.y}em) translateZ(${point.z}em) rotateY(${prev.lastRotated - 24}deg)`,
+            opacity: `${generateOpacity()}`
+          }
+          
+        }))
+      }, 1300)
+
+      return () => clearInterval(interval)
+    }
+    else {
+      setSnitchCSSStyle(initialSnitchStyle)
+    }
+    
+  }, [gameState])
+
+  
+  function handleSnitchCLick() {
+    if (gameState.isGameOn) {
+      setGameState(prev => ({
+        ...prev,
+        isGameOn: false,
+        isModal: true
       }))
-    }, 1300)
-
-    return () => clearInterval(interval)
-  }, [])
-
-
+    }
+  }
   return (
     <div style={snitchCSSStyle.style}
     className='snitch'
-    onClick={() => {alert("Well done, you're a seeker!")}}></div>
+    onClick={handleSnitchCLick}></div>
   )
 }
 

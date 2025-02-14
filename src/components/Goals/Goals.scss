@@ -2,6 +2,7 @@
 
 $goals-gap: 0.8em;
 $goal-color: gold;
+$pole-rotate-start: 90deg;
 
 .goals-container {
     position: absolute;
@@ -19,57 +20,53 @@ $goal-color: gold;
     width: 2px;
     bottom: 0;
 }
-@mixin pole-props {
-    position: absolute;
-    background: $goal-color;
-    box-shadow: 0 0 0.5px #000a inset;
-    height: 100%;
-    width: 100%;
-    animation: poleRotate globals.$rotateSpeed linear infinite;
-    &.goals-pos-right {
-        animation-delay: 0.5 * globals.$rotateSpeed;
+
+@keyframes rightPoleRotate {
+    100% {
+        transform: rotateY(-270deg);
     }
 }
 
-@keyframes poleRotate {
-    0% {
-        transform: rotateY(0deg);
-    }
-    50% {
-        transform: rotateY(-360deg);
-    }
+@keyframes leftPoleRotate {
     100% {
-        // make the animation pause by momentarily take away rotateY from transform
-        transform: translateX(0);
+        transform: rotateY(-450deg);
     }
 }
 
 .tall-goal {
     @include goal-props;
     height: 3em;
-
-    .tall-pole {
-        @include pole-props;
-    }
 }
 
 .mid-goal {
     @include goal-props;
     height: 2.5em;
     translate: ($goals-gap);
-    
-    .mid-pole {
-        @include pole-props;
-    }
 }
 
 .short-goal {
     @include goal-props;
     height: 2em;
     translate: (-$goals-gap);
-    
-    .short-pole {
-        @include pole-props;
+}
+
+.pole {
+    position: absolute;
+    background: $goal-color;
+    box-shadow: 0 0 1px #000a inset;
+    height: 100%;
+    width: 100%;
+    &.goals-pos-right {
+        transform: rotateY($pole-rotate-start);
+        &.active {
+            animation: rightPoleRotate globals.$rotateSpeed linear infinite;
+        }
+    }
+    &.goals-pos-left {
+        transform: rotateY(-$pole-rotate-start);
+        &.active {
+            animation: leftPoleRotate globals.$rotateSpeed linear infinite;
+        }
     }
 }
 

@@ -1,13 +1,19 @@
+import { useGameContext } from '../../context/GameContext'
 import './Tower.scss'
 type HouseName = "slytherin" | "ravenclaw" | "gryffindor" | "huflpuff"
 
 type TowerProps = {
-    houseName: HouseName
-    position: string
+  houseName: HouseName
+  position: string
 }
 
 const Tower = ({ houseName, position }: TowerProps) => {
+
+  const { gameState } = useGameContext()
+
   return (
+  <>
+    {gameState.didFirstGame &&
     <div className={`tower ${position}`}>
       <div className="base">
         <div className={`base-rectangle front ${houseName}`}></div>
@@ -30,6 +36,8 @@ const Tower = ({ houseName, position }: TowerProps) => {
         <div className={`roof-triangle right ${houseName}`}></div>
       </div>
     </div>
+      }
+  </>
   )
 }
 

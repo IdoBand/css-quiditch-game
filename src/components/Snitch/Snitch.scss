@@ -1,0 +1,58 @@
+@mixin snitchWing {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-color: white;
+    transform: translateY(-55%);
+    box-shadow: 0 0 15px rgba(59, 59, 59, 0.667) inset;
+}
+
+.snitch {
+    position: absolute;
+    width: 0.3em;
+    height: 0.3em;
+    border-radius: 50%;
+    background: gold;
+    box-shadow: 0 0 3px rgba(59, 59, 59, 0.667) inset;
+    cursor: pointer;
+    
+    &::before {
+        @include snitchWing;
+        left: -130%;
+        clip-path: polygon(38% 49%, 69% 50%, 100% 60%, 71% 65%, 40% 73%, 14% 68%, 0 55%);
+        animation: leftWingFlap 0.5s linear infinite;
+        transform-origin: right;
+    }
+
+    &::after {
+        @include snitchWing;
+        right: -130%;
+        clip-path: polygon(62% 49%, 31% 50%, 0% 60%, 29% 65%, 60% 73%, 86% 68%, 100% 55%);
+        animation: rightWingFlap 0.5s linear infinite;
+        transform-origin: left;
+    }
+}
+
+@keyframes leftWingFlap {
+    0% {
+        rotate: 15deg;
+    }
+    50% {
+        rotate: -15deg;
+    }
+    100% {
+        rotate: 15deg;
+    }
+}
+@keyframes rightWingFlap {
+    0% {
+        rotate: -15deg;
+    }
+    50% {
+        rotate: 15deg;
+    }
+    100% {
+        rotate: -15deg;
+    }
+}
