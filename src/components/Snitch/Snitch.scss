@@ -1,3 +1,5 @@
+@use '../../_globals.scss' as globals;
+
 @mixin snitchWing {
     content: '';
     position: absolute;

@@ -1,4 +1,4 @@
-import { useGameContext } from '../../context/GameContext'
+import { useGlobalState } from '../../context/GlobalStateContext'
 import './Tower.scss'
 type HouseName = "slytherin" | "ravenclaw" | "gryffindor" | "huflpuff"
 
@@ -9,11 +9,11 @@ type TowerProps = {
 
 const Tower = ({ houseName, position }: TowerProps) => {
 
-  const { gameState } = useGameContext()
+  const { state } = useGlobalState()
 
   return (
   <>
-    {gameState.didFirstGame &&
+    {state.gameState.didFirstGame &&
     <div className={`tower ${position}`}>
       <div className="base">
         <div className={`base-rectangle front ${houseName}`}></div>

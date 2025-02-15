@@ -1,28 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useGameContext } from '../../context/GameContext'
+import { useEffect } from 'react'
 import './Snitch.scss'
-
-type SnitchCSSStyle = {
-  style : {
-    position: 'absolute',
-    transformStyle: 'preserve-3d'
-    transform: string,
-    transition: string,
-    opacity: string,
-  },
-  lastRotated: number
-}
-
-const initialSnitchStyle: SnitchCSSStyle = {
-  style: {
-    position: 'absolute',
-    transformStyle:'preserve-3d',
-    transform: 'translateX(-50%)',
-    transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
-    opacity: '1',
-  },
-  lastRotated: 0
-}
+import { useGlobalState } from '../../context/GlobalStateContext'
 
 type XYZLimits = {
   [key: string]: [number, number]
@@ -48,47 +26,48 @@ function generateOpacity() {
 
 const Snitch = () => {
   
-  const { gameState, setGameState } = useGameContext()
-  const [snitchCSSStyle, setSnitchCSSStyle] = useState<SnitchCSSStyle>(initialSnitchStyle)
-
+  const { state, dispatch } = useGlobalState()
   useEffect(() => {
 
-    if (gameState.isGameOn) {
+    if (state.gameState.isGameOn) {
       const interval = setInterval(() => {
-        const point = generateRandomPoint(snitchLimits) 
-        setSnitchCSSStyle(prev => ({
-          lastRotated: prev.lastRotated - 24,
-          style: {
-            ...prev.style,
-            transform: `translateX(${point.x}em) translateY(${point.y}em) translateZ(${point.z}em) rotateY(${prev.lastRotated - 24}deg)`,
-            opacity: `${generateOpacity()}`
+        const point = generateRandomPoint(snitchLimits)
+        dispatch({
+          type: 'SET_SNITCH_STATE',
+          payload: (prevState) => { 
+            return {
+              ...prevState,
+              lastRotated: prevState.lastRotated - 24,
+              style: {
+                ...prevState.style,
+                transform: `translateX(${point.x}em) translateY(${point.y}em) translateZ(${point.z}em) rotateY(${prevState.lastRotated - 24}deg)`,
+                opacity: `${prevState.lastRotated === 0 ? 1 : generateOpacity()}`
+              }
+            }
           }
-          
-        }))
+      });
+  
       }, 1300)
 
       return () => clearInterval(interval)
     }
     else {
-      setSnitchCSSStyle(initialSnitchStyle)
+      dispatch({type: "STANDBY_GAME"})
     }
     
-  }, [gameState])
+  }, [state.gameState])
 
-  
-  function handleSnitchCLick() {
-    if (gameState.isGameOn) {
-      setGameState(prev => ({
-        ...prev,
-        isGameOn: false,
-        isModal: true
-      }))
+  function handleSnitchClick() {
+    // game becomes winnable after 3 intervals
+    if (state.gameState.isGameOn && state.snitchState.lastRotated <= -72) {
+      dispatch({ type: "STOP_GAME"})
     }
   }
+
   return (
-    <div style={snitchCSSStyle.style}
+    <div style={state.snitchState.style}
     className='snitch'
-    onClick={handleSnitchCLick}></div>
+    onClick={handleSnitchClick}></div>
   )
 }
 
