@@ -78,9 +78,9 @@ $huflpuff-color:
   cursor: pointer;
   box-shadow: 7px 7px 10px black;
   border: none;
+  border-radius: 30px;
   padding: 5px 20px;
   @include readableFont;
-  border-radius: 30px;
   transition: all 0.2s;
   transform: translateX(-50%);
   &:hover {

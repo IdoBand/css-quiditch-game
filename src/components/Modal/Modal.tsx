@@ -1,22 +1,15 @@
 import './Modal.scss'
 import { SocialIcon } from "react-social-icons"
-import { useGameContext } from "../../context/GameContext"
+import { useGlobalState } from '../../context/GlobalStateContext';
 
 const Modal = () => {
-    const { gameState, setGameState } = useGameContext()
 
-    function handleRestartGame() {
-        setGameState(prev => ({
-            ...prev,
-            isModal: false,
-            isGameOn: true
-        }))
-    }
+    const { state, dispatch } = useGlobalState()
 
   return (
     <div className='modal-underlay'>
         <div className='modal-content'>
-            {!gameState.isGameOn &&
+            {!state.gameState.isGameOn &&
             <p>
                 Well Done!<br />You're a seeker
             </p> 
@@ -25,7 +18,7 @@ const Modal = () => {
                 <button
                     className="restart-game-button"
                     type="button"
-                    onClick={handleRestartGame}
+                    onClick={() => dispatch({type: "START_GAME"})}
                     >
                     Restart Game
                 </button>
