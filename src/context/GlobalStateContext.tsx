@@ -30,7 +30,10 @@ const standbySnitch: SnitchState = {
     lastRotated: 0
 }
 
-const initialState = {
+const initialState: {
+    snitchState: SnitchState,
+    gameState: GameState
+} = {
     snitchState: standbySnitch,
     gameState: {
         didFirstGame: false,
