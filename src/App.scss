@@ -31,3 +31,10 @@
     font-size: 30px;
     @include globals.button;
 }
+
+@media (max-width: 500px) {
+    .animation-body {
+        font-size: 20px;
+        perspective-origin: 50% 10%;
+    }
+}

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////
 /// Durations
 
-$cubeSpeed: 2s;
+$cubeSpeed: 1s;
 $rotateSpeed: 20s;
 
 
@@ -79,8 +79,11 @@ $huflpuff-color:
   box-shadow: 7px 7px 10px black;
   border: none;
   border-radius: 30px;
-  padding: 5px 20px;
+  padding: 10px 20px 5px 20px;
+  margin-bottom: 20px;
   @include readableFont;
+  background: radial-gradient(rgba(65,65,65,1) 0%, rgba(158,158,158,1) 100%);
+  color: #fff;
   transition: all 0.2s;
   transform: translateX(-50%);
   &:hover {

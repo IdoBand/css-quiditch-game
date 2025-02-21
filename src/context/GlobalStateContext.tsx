@@ -12,7 +12,6 @@ type SnitchState = {
     lastRotated: number
 }
 type GameState = {
-    didFirstGame: boolean,
     isGameOn: boolean,
     isModal: boolean,
 }
@@ -36,7 +35,6 @@ const initialState: {
 } = {
     snitchState: standbySnitch,
     gameState: {
-        didFirstGame: false,
         isGameOn: false,
         isModal: false,
     }
@@ -48,6 +46,7 @@ type Action =
 | { type: 'START_GAME' }
 | { type: 'STANDBY_GAME' }
 | { type: 'STOP_GAME' }
+| { type: 'EXIT_MODAL' }
 
 function gameReducer(state: typeof initialState, action: Action) {
     switch (action.type) {
@@ -69,7 +68,6 @@ function gameReducer(state: typeof initialState, action: Action) {
                 },
                 gameState: {
                     isModal: false,
-                    didFirstGame: true,
                     isGameOn: true
                 }
             };
@@ -84,12 +82,18 @@ function gameReducer(state: typeof initialState, action: Action) {
             return {
                 snitchState: standbySnitch,
                 gameState: {
-                    didFirstGame: true,
                     isGameOn: false,
                     isModal: true
                 }
             };
-
+        case 'EXIT_MODAL':
+            return {
+                snitchState: standbySnitch,
+                gameState: {
+                    isGameOn: false,
+                    isModal: false
+                }
+            }
         default:
             return state;
     }

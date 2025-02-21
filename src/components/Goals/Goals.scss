@@ -72,19 +72,90 @@ $pole-rotate-start: 90deg;
 
 .hoop {
     position: absolute;
-    @for $i from 1 to 9 {
-        & :nth-child(#{$i}) {
-            $translateZ: calc(#{$i} * 0.004em);
-            $size: calc(sin(#{$i} * 11.25deg) * 0.004em);
-            box-shadow: 0 0 0.3px #000a inset;
-            position: absolute;
-            inset: -7px;
-            border: $size $goal-color solid;
-            border-radius: 50%;
-            transform: rotateY(0deg) translateZ($translateZ) translateY(-50%);
-        }
-    }
+    // @for $i from 1 to 9 {
+    //     & :nth-child(#{$i}) {
+    //         $translateZ: calc(#{$i} * 0.004em);
+    //         $size: calc(sin(#{$i} * 11.25deg) * 0.004em);
+    //         box-shadow: 0 0 0.3px #000a inset;
+    //         position: absolute;
+    //         inset: -7px;
+    //         border: $size $goal-color solid;
+    //         border-radius: 50%;
+    //         transform: rotateY(0deg) translateZ($translateZ) translateY(-50%);
+    //     }
+    // }
     &.back {
         transform: rotateY(180deg) translateZ(-1px);
     }
+}
+.hoop div:nth-child(1), .hoop-back div:nth-child(1) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(1 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(1 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(2), .hoop-back div:nth-child(2) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(2 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(2 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(3), .hoop-back div:nth-child(3) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(3 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(3 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(4), .hoop-back div:nth-child(4) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(4 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(4 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(5), .hoop-back div:nth-child(5) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(5 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(5 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(6), .hoop-back div:nth-child(6) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(6 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(6 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(7), .hoop-back div:nth-child(7) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(7 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(7 * 0.004em)) translateY(-50%);
+}
+
+.hoop div:nth-child(8), .hoop-back div:nth-child(8) {
+    box-shadow: 0 0 0.3px #000a inset;
+    position: absolute;
+    inset: -7px;
+    border: calc(sin(8 * 11.25deg) * 0.004em) solid $goal-color;
+    border-radius: 50%;
+    transform: rotateY(0deg) translateZ(calc(8 * 0.004em)) translateY(-50%);
 }

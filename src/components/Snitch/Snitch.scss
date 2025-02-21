@@ -7,7 +7,7 @@
     height: 150%;
     background-color: white;
     transform: translateY(-55%);
-    box-shadow: 0 0 15px rgba(59, 59, 59, 0.667) inset;
+    box-shadow: 0 0 15px rgba(1, 1, 1, 0.667) inset;
 }
 
 .snitch {
@@ -56,5 +56,12 @@
     }
     100% {
         rotate: -15deg;
+    }
+}
+
+@media (max-width: 500px) {
+    .snitch {
+        width: 0.5em;
+        height: 0.5em;
     }
 }

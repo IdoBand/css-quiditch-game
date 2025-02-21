@@ -3,7 +3,7 @@
 $boxColor: rgba(53, 59, 59, 0.467);
 $tower-base-length: 0.8em;
 $box-shadow: 0 0 0.5em #000a inset;
-$animation-delay: 1s;
+$animation-delay: 0s;
 //           _
 //    / \    1 * $tower-base-length
 //   /___\   _
@@ -126,7 +126,7 @@ $animation-delay: 1s;
   width: $tower-base-length;
   height: 0;
   animation: standHeight globals.$cubeSpeed linear forwards;
-  animation-delay: $animation-delay + 2s;
+  animation-delay: $animation-delay + 1s;
 }
 
 @keyframes standHeight {
@@ -184,7 +184,7 @@ $animation-delay: 1s;
   height: 100%;
   width: $tower-base-length;
   animation: opa 2s linear forwards;
-  animation-delay: 2s;
+  animation-delay: 1s;
   transform: rotateY(180deg) translateZ(0.5 * $tower-base-length);
   box-shadow: $box-shadow;
 }
@@ -207,7 +207,7 @@ $animation-delay: 1s;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   box-shadow: $box-shadow;
   animation: roofHeight globals.$cubeSpeed linear forwards;
-  animation-delay: $animation-delay + 4s;
+  animation-delay: $animation-delay + 2s;
 }
 
 .roof-triangle.front {
