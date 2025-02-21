@@ -4,16 +4,21 @@ import { useGlobalState } from '../../context/GlobalStateContext';
 
 const Modal = () => {
 
-    const { state, dispatch } = useGlobalState()
+    const { dispatch } = useGlobalState()
 
   return (
     <div className='modal-underlay'>
         <div className='modal-content'>
-            {!state.gameState.isGameOn &&
+            <button 
+            className='modal-close-button' 
+            onClick={() => dispatch({type: "EXIT_MODAL"})}
+            type='button'
+            >
+                X
+            </button>
             <p>
                 Well Done!<br />You're a seeker
             </p> 
-            }
             <div className="modal-buttons-container">
                 <button
                     className="restart-game-button"
@@ -23,9 +28,10 @@ const Modal = () => {
                     Restart Game
                 </button>
                 <div className="links">
-                    <a href="https://idoband.onrender.com/" target="_blank" className="portfolio-icon" />
+                    <a href="https://idoband.onrender.com/" target="_blank" className="social-media-icon " />
                     {LINKS.map(link => {
-                        return (<SocialIcon 
+                        return (<SocialIcon
+                            className='social-media-icon'
                             key={link.url} 
                             url={link.url}
                             target='_blank'
