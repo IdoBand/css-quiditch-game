@@ -1,6 +1,5 @@
 import './Modal.scss'
-import { SocialIcon } from "react-social-icons"
-import { useGlobalState } from '../../context/GlobalStateContext';
+import { useGlobalState } from '../../context/useGlobalState';
 
 const Modal = () => {
 
@@ -28,15 +27,14 @@ const Modal = () => {
                     Restart Game
                 </button>
                 <div className="links">
-                    <a href="https://idoband.onrender.com/" target="_blank" className="social-media-icon " />
                     {LINKS.map(link => {
-                        return (<SocialIcon
-                            className='social-media-icon'
-                            key={link.url} 
-                            url={link.url}
-                            target='_blank'
-                            />)
-                        })}
+                        return (<a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            className={`social-media-icon ${link.media}`}
+                        />)
+                    })}
                 </div>
             </div>
         </div>
@@ -48,11 +46,16 @@ export default Modal
 
 const LINKS = [
     {
-        media: 'github',
-        url: 'www.github.com/IdoBand/css-quiditch-game',
-    },
-    {
         media: 'linkedin',
         url: 'https://www.linkedin.com/in/ido-band/',
     },
+    {
+        media: 'github',
+        url: 'https://www.github.com/IdoBand/css-quiditch-game',
+    },
+    {
+        media: 'portfolio',
+        url: 'https://idoband.onrender.com/'
+
+    }
 ]

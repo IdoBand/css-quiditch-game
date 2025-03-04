@@ -4,7 +4,8 @@ import Goals from './components/Goals/Goals';
 import Snitch from './components/Snitch/Snitch';
 import Ground from './components/Ground/Ground';
 import Modal from './components/Modal/Modal';
-import { useGlobalState }from './context/GlobalStateContext'
+import { useGlobalState }from './context/useGlobalState'
+
 function App() {
 
 const { state, dispatch } = useGlobalState();

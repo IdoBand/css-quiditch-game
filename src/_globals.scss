@@ -10,7 +10,7 @@ $rotateSpeed: 20s;
 
 @font-face {
   font-family: 'MagicFont';
-  src: url("./assets/fonts/MagicSchoolTwo.ttf");
+  src: url("/MagicSchoolTwo.ttf") format('truetype');
 }
 @mixin magicFont {
   font-family: 'MagicFont';
@@ -18,7 +18,7 @@ $rotateSpeed: 20s;
 
 @font-face {
   font-family: 'readableFont';
-  src: url("./assets/fonts/Benne/Benne-Regular.ttf");
+  src: url("/Benne-Regular.ttf") format('truetype');
 }
 @mixin readableFont {
   font-family: 'readableFont';

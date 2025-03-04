@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import './Snitch.scss'
-import { useGlobalState } from '../../context/GlobalStateContext'
+import { useGlobalState } from '../../context/useGlobalState'
 
 type XYZLimits = {
   [key: string]: [number, number]

@@ -1,5 +1,5 @@
 import './Goals.scss'
-import { useGlobalState } from '../../context/GlobalStateContext'
+import { useGlobalState } from '../../context/useGlobalState'
 type GoalsProps = {
   goalsPosition: 'goals-pos-right' | 'goals-pos-left'
 }

@@ -1,5 +1,5 @@
-@use '../../globals.scss' as globals;
-
+@use '../../_globals.scss' as globals;
+@use 'sass:math';
 $goals-gap: 0.8em;
 $goal-color: gold;
 $pole-rotate-start: 90deg;
@@ -9,10 +9,10 @@ $pole-rotate-start: 90deg;
     bottom: -5em;
 
     &.goals-pos-left {
-        transform: rotateY(90deg) translateZ(-10em);
+        transform: rotateY($pole-rotate-start) translateZ(-10em);
     }
     &.goals-pos-right {
-        transform: rotateY(-90deg) translateZ(-10em);
+        transform: rotateY(-$pole-rotate-start) translateZ(-10em);
     }
 }
 @mixin goal-props {
@@ -22,13 +22,13 @@ $pole-rotate-start: 90deg;
 }
 
 @keyframes rightPoleRotate {
-    100% {
+    to {
         transform: rotateY(-270deg);
     }
 }
 
 @keyframes leftPoleRotate {
-    100% {
+    to {
         transform: rotateY(-450deg);
     }
 }
@@ -53,109 +53,115 @@ $pole-rotate-start: 90deg;
 .pole {
     position: absolute;
     background: $goal-color;
-    box-shadow: 0 0 1px #000a inset;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2) inset;
     height: 100%;
     width: 100%;
     &.goals-pos-right {
-        transform: rotateY($pole-rotate-start);
+        transform: rotateY(90deg);
         &.active {
-            animation: rightPoleRotate globals.$rotateSpeed linear infinite;
+            animation: rightPoleRotate 20s linear infinite;
         }
     }
     &.goals-pos-left {
-        transform: rotateY(-$pole-rotate-start);
+        transform: rotateY(-90deg);
         &.active {
-            animation: leftPoleRotate globals.$rotateSpeed linear infinite;
+            animation: leftPoleRotate 20s linear infinite;
         }
     }
 }
 
 .hoop {
     position: absolute;
-    // @for $i from 1 to 9 {
-    //     & :nth-child(#{$i}) {
-    //         $translateZ: calc(#{$i} * 0.004em);
-    //         $size: calc(sin(#{$i} * 11.25deg) * 0.004em);
-    //         box-shadow: 0 0 0.3px #000a inset;
-    //         position: absolute;
-    //         inset: -7px;
-    //         border: $size $goal-color solid;
-    //         border-radius: 50%;
-    //         transform: rotateY(0deg) translateZ($translateZ) translateY(-50%);
-    //     }
-    // }
+
     &.back {
         transform: rotateY(180deg) translateZ(-1px);
     }
+    // > div {
+    //     @for $i from 1 to 9 {
+    //     $angle-deg: $i * 22.5deg;
+    //     $angle-rad: calc($angle-deg * math.$pi / 180);
+    //     $tZ: #{$i * 0.004em};
+    //     $size: calc(sin($angle-rad) * 0.004em);
+    //     // @debug $size;
+    //         &:nth-child(#{$i}) {
+    //             box-shadow: 0 0 0.3px rgba(0, 0, 0, 0.1) inset;
+    //             position: absolute;
+    //             inset: -3px;
+    //             border: $size solid $goal-color;
+    //             border-radius: 50%;
+    //             transform: rotateY(0deg) translateZ($tZ) translateY(-50%);
+    //         }
+    //     }
+    // }
 }
 .hoop div:nth-child(1), .hoop-back div:nth-child(1) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(1 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(1 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(1 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(2), .hoop-back div:nth-child(2) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(2 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(2 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(2 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(3), .hoop-back div:nth-child(3) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(3 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(3 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(3 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(4), .hoop-back div:nth-child(4) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(4 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(4 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(4 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(5), .hoop-back div:nth-child(5) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(5 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(5 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(5 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(6), .hoop-back div:nth-child(6) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(6 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(6 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(6 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(7), .hoop-back div:nth-child(7) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(7 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(7 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(7 * 0.004em)) translateY(-50%);
 }
 
 .hoop div:nth-child(8), .hoop-back div:nth-child(8) {
-    box-shadow: 0 0 0.3px #000a inset;
+    box-shadow: 0 0 0.3px rgba(0,0,0,0.2) inset;
     position: absolute;
     inset: -7px;
-    border: calc(sin(8 * 11.25deg) * 0.004em) solid $goal-color;
+    border: calc(sin(8 * 22.5deg) * 0.004em) solid $goal-color;
     border-radius: 50%;
     transform: rotateY(0deg) translateZ(calc(8 * 0.004em)) translateY(-50%);
 }
