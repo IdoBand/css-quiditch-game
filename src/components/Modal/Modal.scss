@@ -30,6 +30,7 @@
 }
 .modal-close-button {
     position: absolute;
+    background: transparent;
     border: none;
     right: 20px;
     top: 20px;
@@ -37,9 +38,10 @@
     color: rgb(144, 0, 0);
 }
 .restart-game-button {
-    top: -150%;
+    top: -200%;
     left: 50%;
-    width: 100%;
+    width: max-content;
+    text-wrap: nowrap;
     font-size: 20px;
     @include globals.button;
 }
@@ -48,15 +50,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
 }
 .social-media-icon {
-    background-image: url('/portfolioImage.png');
-    background-size: cover;
-    background-repeat: no-repeat;
     width: 45px;
     height: 45px;
     border-radius: 50%;
+    &.portfolio {
+        width: 40px;
+    height: 40px;
+        background-image: url('/portfolioImage.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &.github {
+        background-image: url('/github.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    &.linkedin {
+        background-image: url('/linkedin.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 }
 
 @media (max-width: 1500px) {
@@ -73,13 +89,16 @@
     .modal-content {
         top: 23%;
         height: 35vh;
-        width: 50vw;
+        width: 55vw;
+    }
+    .links {
+        gap: 5px;
     }
     .social-media-icon {
-        scale: 0.65;
+        scale: 0.7;
     }
     .restart-game-button {
-        font-size: 10px;
+        font-size: 12px;
         width: max-content;
     }
 }
