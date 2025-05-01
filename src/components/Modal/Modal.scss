@@ -11,22 +11,25 @@
 }
 .modal-content {
     position: absolute;
-    top: 30%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    padding-top: 40px;
-    @include globals.magicFont;
-    width: 30vw;
-    height: 40vh;
-    background: #e8e8e8;
-    border-radius: 30px;
-}
-.modal-buttons-container {
-    position: absolute;
-    bottom: 10px;
+    top: 50%;
+    translate: 0 -100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+    @include globals.magicFont;
+    width: 30dvw;
+    height: max-content;
+    background: #e8e8e8;
+    border-radius: 30px;
+    gap: 15px;
+}
+.modal-buttons-container {
+    display: grid;
+    place-items: center;
+    gap: 15px;
 }
 .modal-close-button {
     position: absolute;
@@ -38,12 +41,16 @@
     color: rgb(144, 0, 0);
 }
 .restart-game-button {
-    top: -200%;
-    left: 50%;
     width: max-content;
     text-wrap: nowrap;
     font-size: 20px;
     @include globals.button;
+    &:hover {
+        transform: scale(1.05);
+      }
+      &:active {
+        transform: scale(0.95);
+      }
 }
 
 .links {
@@ -77,19 +84,27 @@
 
 @media (max-width: 1500px) {
     .modal-content {
-        width: 50vw;
         font-size: 35px;
     }
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 768px) and (orientation: landscape) {
+
     .modal-underlay {
         transform: translateZ(20em);
     }
+    .modal-close-button {
+        right: 15px;
+        top: 15px;
+    }
     .modal-content {
-        top: 23%;
-        height: 35vh;
-        width: 55vw;
+        translate: 0 -120%;
+        height: 50dvh;
+        font-size: 20px;
+        padding: 5px;
+    }
+    .modal-buttons-container {
+        gap: 0;
     }
     .links {
         gap: 5px;
@@ -99,6 +114,5 @@
     }
     .restart-game-button {
         font-size: 12px;
-        width: max-content;
     }
 }

@@ -21,7 +21,7 @@ function generateRandomPoint(snitchLimits: XYZLimits) {
 }
 function generateOpacity() {
   const random = Math.round(Math.random() * 3)
-  return random > 1 ? 0 : 1;
+  return random > 1 ? 1 : 1;
 }
 
 const Snitch = () => {
@@ -67,7 +67,10 @@ const Snitch = () => {
   return (
     <div style={state.snitchState.style}
     className='snitch'
-    onClick={handleSnitchClick}></div>
+    onClick={handleSnitchClick}>
+      <div className='left-wing' />
+      <div className='right-wing' />
+    </div>
   )
 }
 

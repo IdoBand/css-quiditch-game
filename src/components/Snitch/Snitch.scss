@@ -6,7 +6,6 @@
     width: 150%;
     height: 150%;
     background-color: white;
-    transform: translateY(-55%);
     box-shadow: 0 0 15px rgba(1, 1, 1, 0.667) inset;
 }
 
@@ -16,26 +15,34 @@
     height: 0.3em;
     border-radius: 50%;
     background: gold;
-    box-shadow: 0 0 3px rgba(59, 59, 59, 0.667) inset;
     cursor: pointer;
-    
-    &::before {
+    animation: flickerGlow 2s infinite alternate;
+    & > .left-wing {
         @include snitchWing;
         left: -130%;
         clip-path: polygon(38% 49%, 69% 50%, 100% 60%, 71% 65%, 40% 73%, 14% 68%, 0 55%);
         animation: leftWingFlap 0.5s linear infinite;
         transform-origin: right;
+        transform: translateY(-0.30em);
     }
 
-    &::after {
+    & > .right-wing {
         @include snitchWing;
         right: -130%;
         clip-path: polygon(62% 49%, 31% 50%, 0% 60%, 29% 65%, 60% 73%, 86% 68%, 100% 55%);
         animation: rightWingFlap 0.5s linear infinite;
         transform-origin: left;
+        transform: translateY(-0.30em);
     }
 }
-
+@keyframes flickerGlow {
+    0% {
+      box-shadow: 0 0 5px 2px rgba(255, 215, 0, 0.4) inset;
+    }
+    100% {
+        box-shadow: 0 0 3px rgba(59, 59, 59, 0.667) inset;
+    }
+  }
 @keyframes leftWingFlap {
     0% {
         rotate: 15deg;
@@ -59,9 +66,16 @@
     }
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 768px) and (orientation: landscape) {
     .snitch {
         width: 0.5em;
         height: 0.5em;
+        & > .left-wing {
+            transform: translateY(-0.50em);
+        }
+        & > .right-wing {
+            transform: translateY(-0.50em);
+        }
+    
     }
 }
