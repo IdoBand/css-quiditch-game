@@ -74,7 +74,6 @@ $huflpuff-color:
 /// Buttons
 
 @mixin button {
-  position: absolute;
   cursor: pointer;
   box-shadow: 7px 7px 10px black;
   border: none;
@@ -85,11 +84,4 @@ $huflpuff-color:
   background: radial-gradient(rgba(65,65,65,1) 0%, rgba(158,158,158,1) 100%);
   color: #fff;
   transition: all 0.2s;
-  transform: translateX(-50%);
-  &:hover {
-    transform: translateX(-50%) scale(1.05);
-  }
-  &:active {
-    transform: translateX(-50%) scale(0.95);
-  }
 }
